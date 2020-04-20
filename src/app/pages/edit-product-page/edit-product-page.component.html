@@ -1,0 +1,30 @@
+<div class="row">
+    <div class="col-xs-12">
+        <form (ngSubmit)="onSubmit($event)">
+
+            <div class="b-controls-container">
+                <mat-form-field>
+                    <mat-label>Nombre</mat-label>
+                    <input matInput type="text" [formControl]="name" [(ngModel)]="product.name">
+                    <mat-error *ngIf="name.invalid">{{getErrorMessageForName()}}</mat-error>
+                </mat-form-field>
+
+                <mat-form-field>
+                    <mat-label>Valor</mat-label>
+                    <input matInput type="text" [formControl]="cost" [(ngModel)]="product.cost">
+                    <mat-error *ngIf="cost.invalid">{{getErrorMessageForCost()}}</mat-error>
+                </mat-form-field>
+
+                <div class="clearfix">
+                    <button mat-raised-button color="primary" [disabled]="name.invalid || cost.invalid">
+                        Guardar
+                    </button>
+                </div>
+                <div class="b-spinner clearfix">
+                    <mat-spinner *ngIf="!isBeingSave" [diameter]="30"></mat-spinner>
+                </div>
+            </div>
+
+        </form>
+    </div>
+</div>

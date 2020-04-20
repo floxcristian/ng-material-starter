@@ -1,0 +1,21 @@
+.b-controls-container {
+    display: flex;
+    flex-direction: column;
+    font-size: 16px;
+}
+
+.b-controls-container>* {
+    width: 100%;
+}
+
+.b-spinner {
+    text-align: center;
+    .mat-progress-spinner {
+        display: inline-block;
+    }
+}
+
+.clearfix {
+    overflow: hidden;
+    margin-bottom: 4px;
+}
