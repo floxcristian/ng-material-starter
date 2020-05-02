@@ -1,36 +1,40 @@
 // Angular
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-// Pages
-import { NotFoundPageComponent } from './pages/not-found-page/not-found-page.component';
-import { HomePageComponent } from './pages/home-page/home-page.component';
+import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
+
 // Guards
-import { PublicGuard } from './core/guards/public/public.guard';
-import { AuthGuard } from './core/guards/auth/auth.guard';
-// Modules
-import { AuthModule } from './features/auth/auth.module';
+import { PublicGuard } from './@core/guards/public/public.guard';
+import { AuthGuard } from './@core/guards/auth/auth.guard';
+import { MainLayoutComponent } from './@shared/layout/main-layout/main-layout.component';
 
 const routes: Routes = [
   {
-    path: '', pathMatch: 'full', redirectTo: '/login'
+    path: '',
+    component: MainLayoutComponent,
+    children: [
+      {
+        path: '',
+        loadChildren: () => import('./pages/home/home.module').then(m => m.HomeModule)
+      },
+      {
+        path: 'account',
+        loadChildren: () => import('./pages/auth/auth.module').then(m => m.AuthModule)
+      }
+    ]
   },
-  /*
   {
-    path: 'login', component: 
-    , 
-    pathMatch: 'full', 
-    canActivate: [ PublicGuard ]
-  },*/
-  {
-    path: 'home', component: HomePageComponent, data: { name: 'Home' }, canActivate: [ AuthGuard ]
-  },
-  {
-    path: '**', component: NotFoundPageComponent
+    path: '**', 
+    loadChildren: () => import('./pages/not-found-page/not-found-page.module').then(m => m.NotFoundPageModule)
   }
 ];
 
+// //canActivate: [ AuthGuard ]
+//canActivate: [ PublicGuard ]
+
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, {
+    preloadingStrategy: PreloadAllModules
+  })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
