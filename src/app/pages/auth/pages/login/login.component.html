@@ -5,23 +5,36 @@
 
             <mat-form-field>
                 <mat-label>Correo electrónico</mat-label>
-                <input matInput type="text" [formControl]="username">
+                <input matInput type="text" [formControl]="username" required>
                 <mat-error *ngIf="username.invalid">{{getErrorMessageForUsername()}}</mat-error>
             </mat-form-field>
 
             <mat-form-field>
                 <mat-label>Ingresa tu contraseña</mat-label>
-                <input matInput id="pwd" type="password" [formControl]="password" autocomplete="new-password">
-                <span>
+                <input matInput [type]="hide ? 'password' : 'text'" [formControl]="password" autocomplete="new-password" required>
+        
+                <!-- <mat-icon matRipple [matRippleUnbounded]="'true'" [matRippleCentered]="'true'" matSuffix (click)="hide = !hide"
+                [matTooltip]="hide ? 'Mostrar contraseña' : 'Ocultar contraseña'"
+                matTooltipClass="toolClass"> -->
+
+                <button type="button" mat-icon-button matSuffix (click)="toggleButton($event)" [attr.aria-label]="'Hide password'" #tooltip="matTooltip" [attr.aria-pressed]="hide" [matTooltip]="hide ? 'Mostrar contraseña' : 'Ocultar contraseña'" 
+                matTooltipClass="clo"
+                matTooltipVisibility="hidden">
+                    <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
+
+                <!-- {{hide ? 'visibility_off' : 'visibility'}} -->
+            <!-- </mat-icon> -->
+                <!-- <span>
                     <div>
                         <mat-icon matRipple aria-hidden="false" aria-label="Mostrar contraseña">visibility</mat-icon>
                     </div>
-                </span>
+                </span> -->
                 
-                <mat-icon aria-hidden="false" aria-label="Ocultar contraseña">visibility_off</mat-icon>
+                <!-- <mat-icon aria-hidden="false" aria-label="Ocultar contraseña">visibility_off</mat-icon>
                 <button type="button" onClick="pwd.type = (pwd.type === 'text') ? 'password' : 'text'">change</button>
-                <!-- <button (onChange)="toggleButton($event)" [(ngModel)]="checked" [style]="{'width':'50px'}">OO</button> -->
-                <mat-error *ngIf="password.invalid">{{getErrorMessageForPassword()}}</mat-error>
+                <button (onChange)="toggleButton($event)" [(ngModel)]="checked" [style]="{'width':'50px'}">OO</button>
+                <mat-error *ngIf="password.invalid">{{getErrorMessageForPassword()}}</mat-error> -->
             </mat-form-field>
 
             <div class="submit">

@@ -16,6 +16,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatRippleModule } from '@angular/material/core';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 const MATERIAL_MODULES = [
   MatCardModule,
@@ -33,7 +34,8 @@ const MATERIAL_MODULES = [
   MatMenuModule,
   MatDialogModule,
   MatProgressSpinnerModule,
-  MatRippleModule
+  MatRippleModule,
+  MatTooltipModule
 ];
 
 @NgModule({
