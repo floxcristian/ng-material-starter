@@ -2,7 +2,7 @@
 // https://material.angular.io/components/form-field/overview#prefix-amp-suffix
 
 // Angular
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, ElementRef, ViewChild } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
@@ -14,6 +14,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { AuthService } from 'src/app/@core/services/auth/auth.service';
 
 import { LoginErrorModalComponent } from '../login-error-modal/login-error-modal.component';
+//import { MatTooltip } from '@angular/material/tooltip';
 
 @Component({
   selector: 'app-login',
@@ -22,47 +23,49 @@ import { LoginErrorModalComponent } from '../login-error-modal/login-error-modal
   encapsulation: ViewEncapsulation.None,
 })
 export class LoginComponent implements OnInit {
-  
+  //@ViewChild('tooltip') myTooltip: MatTooltip;
 
+  SHOW = 'Mostrar contraseña';
+  HIDE = 'Ocultar contraseña';
   username = new FormControl('', [Validators.required]);
   password = new FormControl('', [Validators.required]);
-  hide: boolean = true;
+  hideTooltip: boolean = true;
+  contentTooltip: string = this.SHOW;
 
   constructor(
     private router: Router,
     private _authSrv: AuthService,
     public dialog: MatDialog,
-    private storage: LocalStorageService
+    private storage: LocalStorageService,
   ) { }
 
   ngOnInit(): void {
   }
 
-  toggleButton(event){
-    console.log("event: ", event)
-    this.hide = !this.hide;
-    
-    //this.tooltip.hide()
-    // if (event.checked) this.type = 'password';
-    // else this.type = 'text';
+  toggleButton() {
+    this.hideTooltip = !this.hideTooltip;
+    setTimeout(() => {
+      if (this.hideTooltip) this.contentTooltip = this.SHOW;
+      else this.contentTooltip = this.HIDE;
+    }, 100);
   }
 
 
-  getErrorMessageForUsername(){
+  getErrorMessageForUsername() {
     const hasError = this.username.hasError('required');
     return hasError ? 'nombre de usuario es requerido' : '';
   }
 
-  getErrorMessageForPassword(){
+  getErrorMessageForPassword() {
     const hasError = this.password.hasError('required');
     return hasError ? 'password es requerido' : '';
   }
 
-  onSubmit(event){
+  onSubmit(event) {
     //event.preventDefault();
     //console.log(event);
     this.router.navigate(['/dskjfdfk']);
-    
+
     /*
     const dialogRef = this.dialog.open(LoginErrorModalComponent, {
       data: ''
