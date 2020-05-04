@@ -15,6 +15,7 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatRippleModule } from '@angular/material/core';
 
 const MATERIAL_MODULES = [
   MatCardModule,
@@ -31,7 +32,8 @@ const MATERIAL_MODULES = [
   MatCheckboxModule,
   MatMenuModule,
   MatDialogModule,
-  MatProgressSpinnerModule
+  MatProgressSpinnerModule,
+  MatRippleModule
 ];
 
 @NgModule({

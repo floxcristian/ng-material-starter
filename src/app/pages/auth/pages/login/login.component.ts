@@ -20,6 +20,8 @@ import { LoginErrorModalComponent } from '../login-error-modal/login-error-modal
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
+  checked: boolean = true;
+  type: string = 'password';
 
   username = new FormControl('', [Validators.required]);
   password = new FormControl('', [Validators.required]);
@@ -37,6 +39,11 @@ export class LoginComponent implements OnInit {
   getErrorMessageForUsername(){
     const hasError = this.username.hasError('required');
     return hasError ? 'nombre de usuario es requerido' : '';
+  }
+
+  toggleButton(event){
+    if (event.checked) this.type = 'password';
+    else this.type = 'text';
   }
 
   getErrorMessageForPassword(){

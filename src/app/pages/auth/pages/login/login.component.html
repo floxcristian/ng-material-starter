@@ -4,14 +4,23 @@
         <form (ngSubmit)="onSubmit($event)">
 
             <mat-form-field>
-                <mat-label>Usuario</mat-label>
-                <input matInput type="text" placeholder="usuario" [formControl]="username">
+                <mat-label>Correo electrónico</mat-label>
+                <input matInput type="text" [formControl]="username">
                 <mat-error *ngIf="username.invalid">{{getErrorMessageForUsername()}}</mat-error>
             </mat-form-field>
 
             <mat-form-field>
-                <mat-label>Contraseña</mat-label>
-                <input matInput type="password" placeholder="contraseña" [formControl]="password" autocomplete="new-password">
+                <mat-label>Ingresa tu contraseña</mat-label>
+                <input matInput id="pwd" type="password" [formControl]="password" autocomplete="new-password">
+                <span>
+                    <div>
+                        <mat-icon matRipple aria-hidden="false" aria-label="Mostrar contraseña">visibility</mat-icon>
+                    </div>
+                </span>
+                
+                <mat-icon aria-hidden="false" aria-label="Ocultar contraseña">visibility_off</mat-icon>
+                <button type="button" onClick="pwd.type = (pwd.type === 'text') ? 'password' : 'text'">change</button>
+                <!-- <button (onChange)="toggleButton($event)" [(ngModel)]="checked" [style]="{'width':'50px'}">OO</button> -->
                 <mat-error *ngIf="password.invalid">{{getErrorMessageForPassword()}}</mat-error>
             </mat-form-field>
 
