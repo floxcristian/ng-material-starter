@@ -6,6 +6,13 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 # How it works
 
+# What's included
+
++ Angular Pipes
++ Custom loading page.
++ Lazy loading modules.
++ SASS (most common used functions and mixins) and BEM styles.
+
 
 ## Development server
 
