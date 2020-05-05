@@ -1,6 +1,11 @@
-# MaterialDemo
+<h1 align="center">Angular Material Starter Kit</h1>
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.0.7.
++ Angular Folder Estructure Best Practices
++ 
+
+# How it works
+
 
 ## Development server
 

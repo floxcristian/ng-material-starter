@@ -1,17 +1,23 @@
 <div class="row">
     <div class="col-xs-12">
       
-        <form (ngSubmit)="onSubmit($event)">
+        <form [formGroup]="loginForm" novalidate (ngSubmit)="onSubmit($event)">
 
             <mat-form-field>
                 <mat-label>Correo electrónico</mat-label>
-                <input matInput type="text" [formControl]="username">
-                <mat-error *ngIf="username.invalid">{{getErrorMessageForUsername()}}</mat-error>
+                <input matInput type="email" formControlName="email"
+                [class.is-danger]="emailFieldIsInvalid">
+
+                <!-- <div *ngIf="emailFieldIsInvalid"> -->
+                    <mat-error *ngIf="emailField.hasError('required')">Ingresa un correo electrónico.</mat-error>
+                <!-- </div> -->
+                <!-- <mat-error *ngIf="email.invalid">{{getErrorMessageForemail()}}</mat-error> -->
             </mat-form-field>
+            
 
             <mat-form-field>
                 <mat-label>Ingresa tu contraseña</mat-label>
-                <input matInput [type]="hideTooltip ? 'password' : 'text'" [formControl]="password" autocomplete="new-password">
+                <input matInput [type]="hideTooltip ? 'password' : 'text'" formControlName="password" autocomplete="new-password">
                 <button type="button" mat-icon-button matSuffix (click)="toggleButton()" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hideTooltip" 
                 [matTooltip]="contentTooltip" 
                 matTooltipClass="clo">
@@ -20,7 +26,7 @@
             </mat-form-field>
 
             <div class="submit">
-                <button mat-raised-button color="primary" [disabled]="username.invalid || password.invalid">
+                <button mat-raised-button color="primary" [disabled]="loginForm.invalid">
                     Ingresar
                 </button>
             </div>
