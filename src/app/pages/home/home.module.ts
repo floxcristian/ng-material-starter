@@ -6,7 +6,7 @@ import { HomeRoutingModule } from './home-routing.module';
 // Root component
 import { HomePageComponent } from './pages/home-page/home-page.component';
 // Modules
-import { SharedModule } from 'src/app/@shared/shared.module';
+import { SharedModule } from '@shared/shared.module';
 import { EditProductPageComponent } from './pages/edit-product-page/edit-product-page.component';
 
 

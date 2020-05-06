@@ -7,7 +7,7 @@ import { LoginComponent } from './pages/login/login.component';
 import { SignupComponent } from './pages/signup/signup.component';
 // Modals
 import { LoginErrorModalComponent } from './pages/login-error-modal/login-error-modal.component';
-import { SharedModule } from 'src/app/@shared/shared.module';
+import { SharedModule } from '@shared/shared.module';
 
 
 @NgModule({

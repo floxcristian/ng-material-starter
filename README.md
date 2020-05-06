@@ -8,9 +8,10 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 # What's included
 
-+ Angular Pipes
++ Angular Pipes.
 + Custom loading page.
 + Lazy loading modules.
++ Path mapping.
 + SASS (most common used functions and mixins) and BEM styles.
 
 

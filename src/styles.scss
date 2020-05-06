@@ -27,6 +27,15 @@ $material-demo-theme: mat-light-theme($material-demo-primary, $material-demo-acc
 @include angular-material-theme($material-demo-theme);
 
 /* You can add global styles to this file, and also import other style files */
+:root{
+    --green: #09c372;
+}
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+::selection {
+    background: var(--green);
+    color: #fff;
+}
+

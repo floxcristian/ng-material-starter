@@ -5,6 +5,8 @@ import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 // UI module
 import { MaterialModule } from './material.module';
+// Translate
+import { TranslateModule } from '@ngx-translate/core';
 // Layout
 import { FooterComponent } from './layout/footer/footer.component';
 import { HeaderComponent } from './layout/header/header.component';
@@ -14,7 +16,8 @@ const MODULES = [
   CommonModule,
   FormsModule,
   ReactiveFormsModule,
-  MaterialModule
+  MaterialModule,
+  TranslateModule
 ];
 
 const COMPONENTS = [

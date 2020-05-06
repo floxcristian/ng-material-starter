@@ -11,7 +11,9 @@ import { LocalStorageService } from 'ngx-webstorage';
 // Material
 import { MatDialog } from '@angular/material/dialog';
 // Services
-import { AuthService } from 'src/app/@core/services/auth/auth.service';
+import { AuthService } from '@core/services/auth/auth.service';
+// Translate
+import {TranslateService} from '@ngx-translate/core';
 
 import { LoginErrorModalComponent } from '../login-error-modal/login-error-modal.component';
 
@@ -37,6 +39,7 @@ export class LoginComponent implements OnInit {
     public dialog: MatDialog,
     private fb: FormBuilder,
     private storage: LocalStorageService,
+    private translate: TranslateService
   ) {
     this.initForm();
   }

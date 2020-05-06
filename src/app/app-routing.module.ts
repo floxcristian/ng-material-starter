@@ -3,9 +3,9 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
 
 // Guards
-import { PublicGuard } from './@core/guards/public/public.guard';
-import { AuthGuard } from './@core/guards/auth/auth.guard';
-import { MainLayoutComponent } from './@shared/layout/main-layout/main-layout.component';
+import { PublicGuard } from '@core/guards/public/public.guard';
+import { AuthGuard } from '@core/guards/auth/auth.guard';
+import { MainLayoutComponent } from '@shared/layout/main-layout/main-layout.component';
 
 const routes: Routes = [
   {
