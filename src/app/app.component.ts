@@ -4,6 +4,8 @@ import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 // rxjs 
 import { Observable } from 'rxjs';
+// ngrx
+import { Store, select } from '@ngrx/store';
 
 @Component({
   selector: 'app-root',
@@ -19,7 +21,8 @@ export class AppComponent implements OnInit {
   language$: Observable<string>;
 
   constructor(
-    private translate: TranslateService
+    private translate: TranslateService,
+    private store: Store
   ) {
     this.translate.addLangs(['es', 'en']);
     this.translate.setDefaultLang('en');
@@ -27,10 +30,10 @@ export class AppComponent implements OnInit {
     this.translate.use(browserLang.match(/en|es/) ? browserLang : 'en');
     
     this.langs = this.translate.getLangs();
-
   }
-  ngOnInit(): void {
 
+  ngOnInit(): void {
+    
   }
 
   changeLang(lang: string){

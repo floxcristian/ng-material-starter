@@ -6,11 +6,7 @@ import * as SettingsActions from './settings.actions';
 export const initialState: SettingsState = {
     language: 'en',
     theme: 'DEFAULT-THEME',
-    nightTheme: NIGHT_MODE_THEME,
-    pageAnimations: true,
-    pageAnimationsDisabled: false,
-    elementsAnimations: true,
-    hour: 0
+    nightTheme: NIGHT_MODE_THEME
 };
 
 const _settingsReducer = createReducer(
@@ -18,16 +14,7 @@ const _settingsReducer = createReducer(
     on(
         SettingsActions.changeLanguage,
         SettingsActions.changeTheme,
-        SettingsActions.changeAnimationsPage,
-        SettingsActions.changeAnimationsElements,
-        SettingsActions.changeHour,
         (state, action) => ({ ...state, ...action })
-    ),
-    on(SettingsActions.changeAnimationsPageDisabled, (state, { pageAnimationsDisabled }) => ({
-        ...state,
-        pageAnimationsDisabled,
-        pageAnimations: false
-    })
     )
 );
 

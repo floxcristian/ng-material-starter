@@ -25,11 +25,12 @@ import { LoginErrorModalComponent } from '../login-error-modal/login-error-modal
 })
 export class LoginComponent implements OnInit {
 
+  // se repite
   SHOW = 'Mostrar contraseña';
   HIDE = 'Ocultar contraseña';
-
   hideTooltip: boolean = true;
   contentTooltip: string = this.SHOW;
+  // fin se repite
 
   loginForm: FormGroup;
 
@@ -53,7 +54,7 @@ export class LoginComponent implements OnInit {
       password: ['', Validators.required]
     });
   }
-
+  // se repite
   toggleButton() {
     this.hideTooltip = !this.hideTooltip;
     setTimeout(() => {
@@ -61,6 +62,7 @@ export class LoginComponent implements OnInit {
       else this.contentTooltip = this.HIDE;
     }, 100);
   }
+  // fin se repite
 
 
   getErrorMessageForemail() {

@@ -10,7 +10,15 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class SignupComponent implements OnInit {
 
+  // se repite
+  SHOW = 'Mostrar contraseña';
+  HIDE = 'Ocultar contraseña';
+  hideTooltip: boolean = true;
+  contentTooltip: string = this.SHOW;
+  // fin se repite
+
   signupForm: FormGroup;
+
   constructor(
     private fb: FormBuilder
   ) { 
@@ -19,6 +27,15 @@ export class SignupComponent implements OnInit {
 
   ngOnInit(): void {
   }
+  // se repite
+  toggleButton() {
+    this.hideTooltip = !this.hideTooltip;
+    setTimeout(() => {
+      if (this.hideTooltip) this.contentTooltip = this.SHOW;
+      else this.contentTooltip = this.HIDE;
+    }, 100);
+  }
+  // fin se repite
 
   private initForm() {
     this.signupForm = this.fb.group({
@@ -42,11 +59,11 @@ export class SignupComponent implements OnInit {
     return this.signupForm.get('email');
   }
 
-  get passwordField(){
+  get passwdField(){
     return this.signupForm.get('passwd');
   }
 
-  get confirmPasswordField(){
+  get confirmPasswdField(){
     return this.signupForm.get('confirm_passwd');
   }
 
@@ -55,9 +72,11 @@ export class SignupComponent implements OnInit {
   }
 
   get passwordFieldIsInvalid(){
-    return this.passwordField.touched && this.passwordField.invalid;
+    return this.passwdField.touched && this.passwdField.invalid;
   }
   
+  
+
   onSubmit(event: Event) {
     event.preventDefault();
     //console.log(event);
