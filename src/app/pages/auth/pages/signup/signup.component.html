@@ -1,3 +1,58 @@
-Nombre 
+<div class="row">
+    <div class="col-xs-12">
+      
+        <form [formGroup]="signupForm" novalidate (ngSubmit)="onSubmit($event)">
 
-Apellido
+            <mat-form-field>
+                <mat-label>Nombre</mat-label>
+                <input matInput type="text" formControlName="name"
+                [class.is-danger]="emailFieldIsInvalid">
+
+                <!-- <div *ngIf="emailFieldIsInvalid"> -->
+                    <mat-error *ngIf="emailField.hasError('required')">Ingresa tu nombre.</mat-error>
+                <!-- </div> -->
+                <!-- <mat-error *ngIf="email.invalid">{{getErrorMessageForemail()}}</mat-error> -->
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>Apellido</mat-label>
+                <input matInput type="text" formControlName="lastname"
+                [class.is-danger]="emailFieldIsInvalid">
+
+                <!-- <div *ngIf="emailFieldIsInvalid"> -->
+                    <mat-error *ngIf="emailField.hasError('required')">Ingresa tu apellido.</mat-error>
+                <!-- </div> -->
+                <!-- <mat-error *ngIf="email.invalid">{{getErrorMessageForemail()}}</mat-error> -->
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>Correo electrónico</mat-label>
+                <input matInput type="email" formControlName="email"
+                [class.is-danger]="emailFieldIsInvalid">
+
+                <!-- <div *ngIf="emailFieldIsInvalid"> -->
+                    <mat-error *ngIf="emailField.hasError('required')">Ingresa un correo electrónico.</mat-error>
+                <!-- </div> -->
+                <!-- <mat-error *ngIf="email.invalid">{{getErrorMessageForemail()}}</mat-error> -->
+            </mat-form-field>
+            
+
+            <mat-form-field>
+                <mat-label>Ingresa una contraseña</mat-label>
+                <input matInput [type]="hideTooltip ? 'password' : 'text'" formControlName="passwd" autocomplete="new-password">
+                <button type="button" mat-icon-button matSuffix (click)="toggleButton()" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hideTooltip" 
+                [matTooltip]="contentTooltip" 
+                matTooltipClass="clo">
+                    <mat-icon>{{hideTooltip ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
+            </mat-form-field>
+
+            <div class="submit">
+                <button mat-raised-button color="primary" [disabled]="signupForm.invalid">
+                    Ingresar
+                </button>
+            </div>
+
+        </form>
+    </div>
+</div>

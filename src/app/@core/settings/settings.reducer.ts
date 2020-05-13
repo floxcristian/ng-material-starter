@@ -1,28 +1,12 @@
 // ngrx
-import { Action, createReducer, on } from '@ngrx/store';
+import { createReducer, on } from '@ngrx/store';
+import { SettingsState, NIGHT_MODE_THEME } from './settings.model';
 import * as SettingsActions from './settings.actions';
-export const NIGHT_MODE_THEME = 'BLACK-THEME';
-
-export type Language = 'en' | 'es';
-
-export interface SettingsState {
-    language: string;
-    theme: string;
-    autoNightMode: boolean;
-    nightTheme: string;
-    stickyHeader: boolean;
-    pageAnimations: boolean;
-    pageAnimationsDisabled: boolean;
-    elementsAnimations: boolean;
-    hour: number;
-}
 
 export const initialState: SettingsState = {
     language: 'en',
     theme: 'DEFAULT-THEME',
-    autoNightMode: false,
     nightTheme: NIGHT_MODE_THEME,
-    stickyHeader: true,
     pageAnimations: true,
     pageAnimationsDisabled: false,
     elementsAnimations: true,
@@ -34,8 +18,6 @@ const _settingsReducer = createReducer(
     on(
         SettingsActions.changeLanguage,
         SettingsActions.changeTheme,
-        SettingsActions.changeAutoNightMode,
-        SettingsActions.changeStickyHeader,
         SettingsActions.changeAnimationsPage,
         SettingsActions.changeAnimationsElements,
         SettingsActions.changeHour,

@@ -2,9 +2,11 @@
 import { ActionReducerMap, MetaReducer, createFeatureSelector } from '@ngrx/store';
 //import { routerReducer, RouterReducerState } from '@ngrx/router-store';
 // state & reducer
-import { settingsReducer, SettingsState } from './settings/settings.reducer';
+import { settingsReducer } from './settings/settings.reducer';
+import { SettingsState } from './settings/settings.model';
 // Envs
 import { environment } from '@env/environment';
+
 
 export interface State {
   settings: SettingsState;

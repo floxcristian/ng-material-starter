@@ -25,8 +25,17 @@ export class SignupComponent implements OnInit {
       name: ['', Validators.required],
       lastname: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
-      password: ['', Validators.required]
+      passwd: ['', Validators.required],
+      confirm_passwd: ['', Validators.required],
     });
+  }
+
+  get nameField(){
+    return this.signupForm.get('name');
+  }
+
+  get lastnameField(){
+    return this.signupForm.get('lastname');
   }
 
   get emailField(){
@@ -34,7 +43,11 @@ export class SignupComponent implements OnInit {
   }
 
   get passwordField(){
-    return this.signupForm.get('password');
+    return this.signupForm.get('passwd');
+  }
+
+  get confirmPasswordField(){
+    return this.signupForm.get('confirm_passwd');
   }
 
   get emailFieldIsInvalid(){
