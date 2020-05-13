@@ -7,13 +7,15 @@ import { NgxWebstorageModule } from 'ngx-webstorage';
 // Interceptors
 import { TokenInterceptor } from './interceptors/token/token.interceptor';
 // Guards
+// State management
+import { StoreModule } from '@ngrx/store';
+import { reducers, metaReducers } from './core.state';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 // Translate
-import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
-import {TranslateHttpLoader} from '@ngx-translate/http-loader';
-
-export function createTranslateLoader(http: HttpClient) {
-  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
-}
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+// Environments
+import { environment } from '@env/environment';
 
 @NgModule({
   declarations: [],
@@ -22,11 +24,17 @@ export function createTranslateLoader(http: HttpClient) {
     HttpClientModule,
     TranslateModule.forRoot({
       loader: {
-          provide: TranslateLoader,
-          useFactory: createTranslateLoader,
-          deps: [HttpClient]
+        provide: TranslateLoader,
+        useFactory: (http: HttpClient) => new TranslateHttpLoader(http),
+        deps: [HttpClient]
       }
-  }),
+    }),
+    // ngrx
+    StoreModule.forRoot(reducers, { metaReducers }),
+    StoreDevtoolsModule .instrument({
+      maxAge: 25, // Retains last 25 states
+      logOnly: environment.production, // Restrict extension to log-only mode
+    }),
     // External
     NgxWebstorageModule.forRoot()
   ],

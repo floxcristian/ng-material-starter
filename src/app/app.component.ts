@@ -2,6 +2,8 @@
 import { Component, OnInit } from '@angular/core';
 // Translate
 import { TranslateService } from '@ngx-translate/core';
+// rxjs 
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -9,16 +11,21 @@ import { TranslateService } from '@ngx-translate/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
+
   title = 'material-demo';
   loader: boolean;
   langs: string[] = [];
 
+  language$: Observable<string>;
+
   constructor(
     private translate: TranslateService
   ) {
-    this.translate.setDefaultLang('en');
-    this.translate.use('es');
     this.translate.addLangs(['es', 'en']);
+    this.translate.setDefaultLang('en');
+    const browserLang = this.translate.getBrowserLang();
+    this.translate.use(browserLang.match(/en|es/) ? browserLang : 'en');
+    
     this.langs = this.translate.getLangs();
 
   }

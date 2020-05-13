@@ -17,6 +17,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatRippleModule } from '@angular/material/core';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import {MatSelectModule} from '@angular/material/select';
 
 const MATERIAL_MODULES = [
   MatCardModule,
@@ -35,7 +36,8 @@ const MATERIAL_MODULES = [
   MatDialogModule,
   MatProgressSpinnerModule,
   MatRippleModule,
-  MatTooltipModule
+  MatTooltipModule,
+  MatSelectModule
 ];
 
 @NgModule({

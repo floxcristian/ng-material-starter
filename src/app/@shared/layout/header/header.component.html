@@ -4,5 +4,14 @@
         <span routerLink="">Material Starter</span>
         <button mat-button color="warn" routerLink="/account/login">login</button>
         <button mat-button color="warn" routerLink="/account/signup">signup</button>
+        <!-- <span *ngIf="language$ | async as language"> -->
+        <span>
+            <mat-select (selectionChange)="onLanguageSelect($event)">
+                <mat-option *ngFor="let l of languages" [value]="l">
+                    {{ l.toUpperCase() }}
+                </mat-option>
+            </mat-select>
+        </span>
     </mat-toolbar-row>
+
 </mat-toolbar>

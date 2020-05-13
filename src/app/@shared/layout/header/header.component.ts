@@ -8,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
+  languages: string[] = ['en', 'es'];
+
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  onLanguageSelect({ value: language }) {
+    //this.store.dispatch(actionSettingsChangeLanguage({ language }));
   }
 
 }
