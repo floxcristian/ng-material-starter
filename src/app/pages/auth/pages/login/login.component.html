@@ -14,16 +14,39 @@
                 <!-- <mat-error *ngIf="email.invalid">{{getErrorMessageForemail()}}</mat-error> -->
             </mat-form-field>
             
-
             <mat-form-field>
                 <mat-label>Ingresa tu contraseña</mat-label>
                 <input matInput [type]="hideTooltip ? 'password' : 'text'" formControlName="password" autocomplete="new-password">
-                <button type="button" mat-icon-button matSuffix (click)="toggleButton()" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hideTooltip" 
-                [matTooltip]="contentTooltip" 
+
+                <button appTooltipPassword [hideTooltip]="hideTooltip"
+                type="button" 
+                mat-icon-button 
+                matSuffix 
+                (click)="toggleButton()" 
+                [attr.aria-label]="'Hide password'" 
+                [attr.aria-pressed]="hideTooltip" 
+                matTooltip="nene"
+
+
                 matTooltipClass="clo">
                     <mat-icon>{{hideTooltip ? 'visibility_off' : 'visibility'}}</mat-icon>
                 </button>
             </mat-form-field>
+            <!-- <mat-form-field>
+                <mat-label>Ingresa tu contraseña</mat-label>
+                <input matInput [type]="hideTooltip ? 'password' : 'text'" formControlName="password" autocomplete="new-password">
+                <button appTooltipPassword 
+                type="button" 
+                mat-icon-button 
+                matSuffix 
+                (click)="toggleButton()" 
+                [attr.aria-label]="'Hide password'" 
+                [attr.aria-pressed]="hideTooltip" 
+                [matTooltip]="contentTooltip" 
+                matTooltipClass="clo">
+                    <mat-icon>{{hideTooltip ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
+            </mat-form-field> -->
 
             <div class="submit">
                 <button mat-raised-button color="primary" [disabled]="loginForm.invalid">

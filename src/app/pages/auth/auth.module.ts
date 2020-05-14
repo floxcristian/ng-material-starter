@@ -8,6 +8,8 @@ import { SignupComponent } from './pages/signup/signup.component';
 // Modals
 import { LoginErrorModalComponent } from './pages/login-error-modal/login-error-modal.component';
 import { SharedModule } from '@shared/shared.module';
+// Directives
+import { TooltipPasswordDirective } from './shared/tooltip-password/tooltip-password.directive';
 
 
 @NgModule({
@@ -15,6 +17,7 @@ import { SharedModule } from '@shared/shared.module';
     LoginComponent,
     LoginErrorModalComponent,
     SignupComponent,
+    TooltipPasswordDirective,
   ],
   entryComponents: [
     LoginErrorModalComponent
