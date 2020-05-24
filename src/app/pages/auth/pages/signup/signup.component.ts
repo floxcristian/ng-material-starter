@@ -2,6 +2,8 @@
 // Angular
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+// Validators
+import { CustomValidators } from '@core/validators/custom-validators';
 
 @Component({
   selector: 'app-signup',
@@ -42,8 +44,11 @@ export class SignupComponent implements OnInit {
       name: ['', Validators.required],
       lastname: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
-      passwd: ['', Validators.required],
-      confirm_passwd: ['', Validators.required],
+      passwd: ['', [Validators.required, Validators.minLength(8)]],
+      confirm_passwd: [''],
+    },
+    {
+      validators: CustomValidators.mustMatch('passwd', 'confirm_passwd')
     });
   }
 
@@ -80,6 +85,10 @@ export class SignupComponent implements OnInit {
   onSubmit(event: Event) {
     event.preventDefault();
     //console.log(event);
+    this.hideTooltip = !this.hideTooltip;
+    if(this.confirmPasswdField.hasError('mustMatch'))
+    this.confirmPasswdField.setValue('');
+    
   }
 
 }

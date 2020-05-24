@@ -38,17 +38,21 @@
             
 
             <mat-form-field>
-                <mat-label>Ingresa una contraseña</mat-label>
+                <mat-label>Contraseña</mat-label>
                 <input matInput [type]="hideTooltip ? 'password' : 'text'" formControlName="passwd" autocomplete="new-password">
-                <button type="button" mat-icon-button matSuffix (click)="toggleButton()" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hideTooltip" 
-                [matTooltip]="contentTooltip" 
-                matTooltipClass="clo">
-                    <mat-icon>{{hideTooltip ? 'visibility_off' : 'visibility'}}</mat-icon>
-                </button>
+                <mat-error *ngIf="passwdField.hasError('required')">Ingresa una contraseña.</mat-error>
+                <mat-error *ngIf="passwdField.hasError('minlength')">Usa 8 caracteres o más para tu contraseña.</mat-error>
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>Confirmación</mat-label>
+                <input matInput [type]="hideTooltip ? 'password' : 'text'" formControlName="confirm_passwd" autocomplete="new-password">
+                <mat-error *ngIf="confirmPasswdField.hasError('required')">Confirma tu contraseña.</mat-error>
+                <mat-error *ngIf="confirmPasswdField.hasError('mustMatch')">Estas contraseñas no coinciden. Inténtalo de nuevo.</mat-error>
             </mat-form-field>
 
             <div class="submit">
-                <button mat-raised-button color="primary" [disabled]="signupForm.invalid">
+                <button mat-raised-button color="primary">
                     Ingresar
                 </button>
             </div>

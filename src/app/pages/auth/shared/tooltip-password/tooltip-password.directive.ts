@@ -1,62 +1,62 @@
+// https://stackoverflow.com/questions/42470225/hide-angular-2-material-tooltip-like-ngif
 // https://stackblitz.com/edit/angular-s7zevt
 // https://medium.com/angular-in-depth/building-tooltips-for-angular-3cdaac16d138
 
 // Problems:
 // + https://stackoverflow.com/questions/50655436/unable-to-setattribute-disabled-using-renderer2-on-angular-material-select
-import { Directive, ElementRef, HostListener, Input, TemplateRef, Renderer2 } from '@angular/core';
-import { MatTooltip } from '@angular/material/tooltip';
+import { Directive, ElementRef, Input, Renderer2, ViewContainerRef, NgZone, Inject, Optional, OnInit } from '@angular/core';
+import { MatTooltip, MAT_TOOLTIP_SCROLL_STRATEGY, MAT_TOOLTIP_DEFAULT_OPTIONS, MatTooltipDefaultOptions } from '@angular/material/tooltip';
+import { Overlay, ScrollDispatcher } from '@angular/cdk/overlay';
+import { Platform } from '@angular/cdk/platform';
+import { AriaDescriber, FocusMonitor } from '@angular/cdk/a11y';
+import { Directionality } from '@angular/cdk/bidi';
 
 @Directive({
   selector: '[appTooltipPassword]'
 })
-export class TooltipPasswordDirective {
+export class TooltipPasswordDirective extends MatTooltip {
 
-  //@ViewChild('exLoc') exLoc: MatSelect;
-  matTool;
-  SHOW = 'Mostrar contraseña';
-  HIDE = 'Ocultar contraseña';
-  contentTooltip: string = this.SHOW;
+  SHOW: string = 'Mostrar contraseña';
+  HIDE: string = 'Ocultar contraseña';
 
   private _hideTooltip;
-  @Input() 
-  set hideTooltip(hideTooltip: boolean) {
+  @Input()
+  set appTooltipPassword(hideTooltip: boolean) {
     setTimeout(() => {
-      if (hideTooltip) this.contentTooltip = this.SHOW;
-      else this.contentTooltip = this.HIDE;
-      console.log(this.contentTooltip);
+      this.message = (this.appTooltipPassword) ? this.SHOW : this.HIDE;
     }, 100);
     this._hideTooltip = hideTooltip;
   }
+  get appTooltipPassword(): boolean { return this._hideTooltip }
 
-  get hideTooltip(): boolean { return this._hideTooltip; }
-  
-  //contentTemplate: TemplateRef<any>;
-
-  /*
-  @HostListener('click')
-  toggleButton() {
-    console.log("click on directive...");
-    // this.hideTooltip = !this.hideTooltip;
-    // setTimeout(() => {
-    //   if (this.hideTooltip) this.contentTooltip = this.SHOW;
-    //   else this.contentTooltip = this.HIDE;
-    // }, 100);
-  }*/
-
-  mati: MatTooltip;
   constructor(
-    private el: ElementRef,
-    public renderer: Renderer2
-  ) { 
-    
-    //this.mati = this.el.nativeElement;
-    // get the button
-    console.log("disabling matTooltip");
-    console.log(this.mati);
-    //this.mati.message = 'oopa';
-    //this.renderer.setProperty(this.matTool, 'disabled', 'true');
-    this.renderer.setAttribute(this.el.nativeElement, 'matTooltip', "true");
-    //this.el.nativeElement.disabled = true;
+    public el: ElementRef,
+    public renderer: Renderer2,
+    _overlay: Overlay,
+    _scrollDispatcher: ScrollDispatcher,
+    _viewContainerRef: ViewContainerRef,
+    _ngZone: NgZone,
+    _platform: Platform,
+    _ariaDescriber: AriaDescriber,
+    _focusMonitor: FocusMonitor,
+    @Inject(MAT_TOOLTIP_SCROLL_STRATEGY) _scrollStrategy: any,
+    @Optional() _dir: Directionality,
+    @Optional() @Inject(MAT_TOOLTIP_DEFAULT_OPTIONS)
+    _defaultOptions: MatTooltipDefaultOptions
+  ) {
+    super(
+      _overlay,
+      el,
+      _scrollDispatcher,
+      _viewContainerRef,
+      _ngZone,
+      _platform,
+      _ariaDescriber,
+      _focusMonitor,
+      _scrollStrategy,
+      _dir,
+      _defaultOptions
+    );
   }
 
 }

@@ -18,16 +18,13 @@
                 <mat-label>Ingresa tu contraseña</mat-label>
                 <input matInput [type]="hideTooltip ? 'password' : 'text'" formControlName="password" autocomplete="new-password">
 
-                <button appTooltipPassword [hideTooltip]="hideTooltip"
+                <button [appTooltipPassword]="hideTooltip"
                 type="button" 
                 mat-icon-button 
                 matSuffix 
-                (click)="toggleButton()" 
+                (click)="hideTooltip = !hideTooltip" 
                 [attr.aria-label]="'Hide password'" 
                 [attr.aria-pressed]="hideTooltip" 
-                matTooltip="nene"
-
-
                 matTooltipClass="clo">
                     <mat-icon>{{hideTooltip ? 'visibility_off' : 'visibility'}}</mat-icon>
                 </button>

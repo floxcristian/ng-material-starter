@@ -11,7 +11,6 @@ import { SharedModule } from '@shared/shared.module';
 // Directives
 import { TooltipPasswordDirective } from './shared/tooltip-password/tooltip-password.directive';
 
-
 @NgModule({
   declarations: [
     LoginComponent,
