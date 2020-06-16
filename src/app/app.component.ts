@@ -30,7 +30,9 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    throw new Error("an error....");
+    //throw new Error("an error...."); // error sucio.
+    let wor = {};
+    console.log(wor["ssadas"]["fdsfd"]);
     /*
     try {
       throw new Error("an error....");

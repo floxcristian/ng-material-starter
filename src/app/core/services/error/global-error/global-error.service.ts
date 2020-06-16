@@ -1,4 +1,5 @@
 // https://medium.com/@amcdnl/global-error-handling-with-angular2-6b992bdfb59c
+// https://developer.mozilla.org/es/docs/Web/JavaScript/Referencia/Objetos_globales/Error
 
 // Angular
 import { ErrorHandler, Injectable, Injector } from "@angular/core";
@@ -17,11 +18,25 @@ export class GlobalErrorService implements ErrorHandler {
   // Error handling is important and needs to be loaded first.
   // Because of this we should manually inject the services with Injector.
   constructor(private injector: Injector) {
-    console.log("global error init....");
+    console.log("GlobalErrorService init....");
   }
 
+  // unionType: solo podemos acceder a valores en común
+  // + Error:
+  //   - message
+  //   - stack
+  // + HttpErrorResponse:
+
   handleError(error: Error | HttpErrorResponse) {
-    console.log("handleError: ", typeof error);
+    console.log("isError: ", error instanceof Error);
+    console.log(
+      "isHttpErrorResponse: ",
+      HttpErrorResponse instanceof HttpErrorResponse
+    );
+    console.log("error: ", error);
+    //console.log("error.message: ", error.message);
+    //console.log("error.stack: ", error.stack);
+
     const errorService = this.injector.get(ExtractErrorService);
     const logger = this.injector.get(LoggingErrorService);
     const notifier = this.injector.get(NotificationService);
