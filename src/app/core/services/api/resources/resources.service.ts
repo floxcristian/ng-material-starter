@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 
-const url = "https://pokeapi.co/api/v2/pokemon/pikachus";
+const url = "https://pokeapi.co/api/v2/pokemon/pikachukkks";
 
 @Injectable({
   providedIn: "root",

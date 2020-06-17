@@ -30,18 +30,12 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    /*setTimeout(() => {
-      myUndefinedFunction(); // ReferenceError
-    }, 5000);*/
+    //setTimeout(() => {
     //myUndefinedFunction(); // ReferenceError
-    //throw new Error("an error...."); // error sucio.
     //let user = {};
     //console.log(user["profile"]["name"]); // TypeError
-    //try {
-    //throw new Error("an error....");
-    /*} catch (error) {
-      console.log(error);
-    }*/
+    //}, 5000);
+    //throw new Error("an error...."); // error sucio.
   }
 
   changeLang(lang: string) {
