@@ -1,64 +1,48 @@
 // https://medium.com/@amcdnl/global-error-handling-with-angular2-6b992bdfb59c
 // https://developer.mozilla.org/es/docs/Web/JavaScript/Referencia/Objetos_globales/Error
-
 // Angular
-import { ErrorHandler, Injectable, Injector } from "@angular/core";
+import { ErrorHandler, Injector, Injectable } from "@angular/core";
 import { HttpErrorResponse } from "@angular/common/http";
 // Services
 import { ExtractErrorService } from "../extract-error/extract-error.service";
 import { NotificationService } from "../../utils/notification/notification.service";
 import { LoggingErrorService } from "../logging-error/logging-error.service";
 
-/*
-@Injectable({
-  providedIn: "root",
-})*/
+type ErrorType = Error | HttpErrorResponse;
+
 @Injectable()
-export class GlobalErrorService implements ErrorHandler {
+export class GlobalError implements ErrorHandler {
   // Error handling is important and needs to be loaded first.
   // Because of this we should manually inject the services with Injector.
-  constructor(private injector: Injector) {
-    console.log("GlobalErrorService init....");
-  }
+  constructor(private injector: Injector) {}
 
-  // unionType: solo podemos acceder a valores en común
-  // + Error:
-  //   - message
-  //   - stack
-  // + HttpErrorResponse:
-
-  handleError(error: Error | HttpErrorResponse) {
-    console.log("isError: ", error instanceof Error);
-    console.log(
-      "isHttpErrorResponse: ",
-      HttpErrorResponse instanceof HttpErrorResponse
-    );
-    console.log("error: ", error);
-    //console.log("error.message: ", error.message);
-    //console.log("error.stack: ", error.stack);
-
+  handleError(error: ErrorType) {
     const errorService = this.injector.get(ExtractErrorService);
     const logger = this.injector.get(LoggingErrorService);
     const notifier = this.injector.get(NotificationService);
 
-    let message;
+    //console.log("error:", error);
+    console.log("typeof(error): ", typeof error);
+    //notifier.showSuccess("this is a sample", "ok");
+    let message: string;
     let stackTrace;
 
     if (error instanceof HttpErrorResponse) {
       // Server error
       message = errorService.getServerMessage(error); // error.message
       stackTrace = errorService.getServerStack(error); // ...
-      notifier.showError(message);
     } else {
       // Client error
       message = errorService.getClientMessage(error); // error.message |
       stackTrace = errorService.getClientStack(error); // error.stack
-      notifier.showError(message);
+      console.log("stackTrace: ", stackTrace);
     }
+    console.log("name: ", error.name);
+    console.log("message: ", message);
+    notifier.showSuccess(message);
 
     // router.navigate(['error']);
-    // Always log errors
-    logger.logError(message, stackTrace);
+    logger.logError(error);
     // IMPORTANT: Rethrow the error otherwise it gets swallowed
     throw error;
   }

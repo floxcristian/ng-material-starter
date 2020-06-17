@@ -1,21 +1,26 @@
 // Angular
-import { NgModule } from '@angular/core';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpClientModule, HttpClient, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { NgModule } from "@angular/core";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import {
+  HttpClientModule,
+  HttpClient,
+  HTTP_INTERCEPTORS,
+} from "@angular/common/http";
 //import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
-import { NgxWebstorageModule } from 'ngx-webstorage';
+import { NgxWebstorageModule } from "ngx-webstorage";
 // Interceptors
-import { TokenInterceptor } from './interceptors/token/token.interceptor';
+import { TokenInterceptor } from "./interceptors/token/token.interceptor";
 // Guards
 // State management
-import { StoreModule } from '@ngrx/store';
-import { reducers, metaReducers } from './core.state';
-import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { StoreModule } from "@ngrx/store";
+import { reducers, metaReducers } from "./core.state";
+import { StoreDevtoolsModule } from "@ngrx/store-devtools";
 // Translate
-import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
-import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { TranslateModule, TranslateLoader } from "@ngx-translate/core";
+import { TranslateHttpLoader } from "@ngx-translate/http-loader";
 // Environments
-import { environment } from '@env/environment';
+import { environment } from "@env/environment";
+import { ServerErrorInterceptor } from "./interceptors/server-error/server-error.interceptor";
 
 @NgModule({
   declarations: [],
@@ -26,24 +31,29 @@ import { environment } from '@env/environment';
       loader: {
         provide: TranslateLoader,
         useFactory: (http: HttpClient) => new TranslateHttpLoader(http),
-        deps: [HttpClient]
-      }
+        deps: [HttpClient],
+      },
     }),
     // ngrx
     StoreModule.forRoot(reducers, { metaReducers }),
-    StoreDevtoolsModule .instrument({
+    StoreDevtoolsModule.instrument({
       maxAge: 25, // Retains last 25 states
       logOnly: environment.production, // Restrict extension to log-only mode
     }),
     // External
-    NgxWebstorageModule.forRoot()
+    NgxWebstorageModule.forRoot(),
   ],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptor,
-      multi: true
-    }
-  ]
+      multi: true,
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ServerErrorInterceptor,
+      multi: true,
+    },
+  ],
 })
-export class CoreModule { }
+export class CoreModule {}

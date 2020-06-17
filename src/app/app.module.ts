@@ -7,12 +7,12 @@ import { AppComponent } from "./app.component";
 import { AppRoutingModule } from "./app-routing.module";
 import { CoreModule } from "@core/core.module";
 import { SharedModule } from "@shared/shared.module";
-import { GlobalErrorService } from "@core/services/error/global-error/global-error.service";
+import { GlobalError } from "@core/services/error/global-error/global-error.service";
 
 @NgModule({
   declarations: [AppComponent],
   imports: [BrowserModule, AppRoutingModule, CoreModule, SharedModule],
-  providers: [{ provide: ErrorHandler, useClass: GlobalErrorService }],
+  providers: [{ provide: ErrorHandler, useClass: GlobalError }],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

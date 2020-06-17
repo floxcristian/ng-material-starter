@@ -1,4 +1,5 @@
 export const AppConfig = {
   repositoryURL: "https://github.com/ismaestro/angular8-example-app",
-  sentryDSN: "https://38434a1b115f41d3a31e356cdc496c06@sentry.io/1315526",
+  sentryDSN:
+    "https://6c049321067e459093a4a0195f854380@o404149.ingest.sentry.io/5267489",
 };

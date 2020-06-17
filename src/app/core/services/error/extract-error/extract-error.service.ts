@@ -6,7 +6,8 @@ import { HttpErrorResponse } from "@angular/common/http";
   providedIn: "root",
 })
 export class ExtractErrorService {
-  // Client
+  // Client:
+  // + myUndefinedFunction is not defined
   getClientMessage(error: Error): string {
     if (!navigator.onLine) return "No Internet Connection";
     return error.message ? error.message : error.toString();
@@ -23,6 +24,21 @@ export class ExtractErrorService {
 
   getServerStack(error: HttpErrorResponse): string {
     // handle stack trace
-    return "stack";
+    //return "stack";
+    return error.error;
   }
+
+  /*getServerError(error){
+      if (error.error instanceof Error) return error.error;
+      else if (error.error instanceof ErrorEvent) return error.error.message;
+      else if (typeof error.error === "string")
+        return `Server returned code ${error.status} with body "${error.error}"`;
+      else return error.message;
+  }
+
+  getClientError(error) {
+    if (typeof error === "string" || error instanceof Error) {
+      return error;
+    } else return null;
+  }*/
 }

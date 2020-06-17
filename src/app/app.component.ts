@@ -30,13 +30,16 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    /*setTimeout(() => {
+      myUndefinedFunction(); // ReferenceError
+    }, 5000);*/
+    //myUndefinedFunction(); // ReferenceError
     //throw new Error("an error...."); // error sucio.
-    let wor = {};
-    console.log(wor["ssadas"]["fdsfd"]);
-    /*
-    try {
-      throw new Error("an error....");
-    } catch (error) {
+    //let user = {};
+    //console.log(user["profile"]["name"]); // TypeError
+    //try {
+    //throw new Error("an error....");
+    /*} catch (error) {
       console.log(error);
     }*/
   }
