@@ -1,5 +1,11 @@
 // Angular
-import { Component, OnInit, ViewChild } from "@angular/core";
+import {
+  Component,
+  OnInit,
+  ViewChild,
+  HostListener,
+  ElementRef,
+} from "@angular/core";
 
 import { MatPaginator } from "@angular/material/paginator";
 import { MatTableDataSource } from "@angular/material/table";
@@ -8,6 +14,7 @@ import { SelectionModel } from "@angular/cdk/collections";
 import { MatDialog } from "@angular/material/dialog";
 import { EditProductPageComponent } from "../edit-product-page/edit-product-page.component";
 import { ResourcesService } from "@core/services/api/resources/resources.service";
+import { HttpResponse } from "@angular/common/http";
 
 export interface PeriodicElement {
   name: string;
@@ -45,6 +52,10 @@ const ELEMENT_DATA: PeriodicElement[] = [
   styleUrls: ["./home-page.component.scss"],
 })
 export class HomePageComponent implements OnInit {
+  @HostListener("window:open", ["$event"])
+  onWindowBlur(event: any): void {
+    console.log("DOMWindowCreated");
+  }
   displayedColumns: string[] = [
     "select",
     "position",
@@ -58,6 +69,7 @@ export class HomePageComponent implements OnInit {
 
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
+  @ViewChild("iframe") iframe: ElementRef;
 
   constructor(
     public dialog: MatDialog,
@@ -69,10 +81,67 @@ export class HomePageComponent implements OnInit {
     this.dataSource.sort = this.sort;
   }
 
-  getPokemons() {
-    this.resourceSrv.getPokemons().subscribe((response) => {
-      console.log(response);
-    });
+  removeBlankTargetFromIframe() {
+    /*if ($(this).attr('target') == "_blank") {
+      $(this).attr('target', '_self');
+  }*/
+  }
+
+  removeIframeContainer() {
+    console.log("removeIframeContainer...");
+  }
+
+  getPokemons(event) {
+    console.log(
+      "iframe: ",
+      this.iframe.nativeElement.contentDocument ||
+        this.iframe.nativeElement.contentWindow
+    );
+    /*let frame = document.querySelector("#removeBlank");
+    console.log("frame: ", frame);
+    let headr = frame.contentWindow.document.getElementsByTagName("head")[0];
+
+    //var head = document.getElementsByTagName("head")[0];
+    console.log("head: ", headr);*/
+    //(elem=document.getElementById("script_name")).parentNode.removeChild(#)
+
+    // prevent:
+    event.preventDefault();
+    window.open(
+      "https://zapahuira.uta.cl/negocio/INT/INT_abrir_sesion.php?usuario=17557632&id=9euqf4o4h4sinv9am8d6qelu40&prf=2087&area=2&titulo=Gesti%C3%B3n&vi=http://localhost:4200/login-1/17557632/9euqf4o4h4sinv9am8d6qelu40",
+      "theFrame",
+      "",
+      false
+    );
+    let oldWindowOpen = window.open;
+    /*
+    window.open = (
+      url?: string,
+      target?: string,
+      features?: string,
+      replace?: boolean
+    ) => {
+      console.log("ejecutando window.open...");
+      return oldWindowOpen();
+    };
+    event.preventDefault();*/
+    /*
+    this.resourceSrv.getPokemons().subscribe((response: HttpResponse<any>) => {
+      console.log("response: ", response);
+      let headers = response.headers;
+      console.log("headers: ", headers);
+      console.log("maybe: ", headers.keys());
+      let keys = Object.keys(headers);
+      console.log("keys: ", keys);
+      console.log(headers["headers"]);
+      console.log(headers.getAll("headers"));
+      console.log(headers.get("headers"));
+      console.log(headers.getAll("set-cookie"));
+      console.log(headers.get("set-cookie"));
+
+      //console.log(headers.getAll("set-cookie"));
+      //console.log(headers.get("set-cookie"));
+    });*/
   }
 
   applyFilter(event: Event) {

@@ -1,27 +1,28 @@
 // Angular
-import { Injectable, Injector } from '@angular/core';
+import { Injectable, Injector } from "@angular/core";
 import {
   HttpRequest,
   HttpHandler,
   HttpEvent,
-  HttpInterceptor
-} from '@angular/common/http';
+  HttpInterceptor,
+} from "@angular/common/http";
 // rxjs
-import { Observable } from 'rxjs';
+import { Observable } from "rxjs";
 // Services
-import { AuthService } from '../../services/auth/auth.service';
+import { AuthService } from "../../services/auth/auth.service";
 
 @Injectable()
 export class TokenInterceptor implements HttpInterceptor {
+  constructor(private injector: Injector) {}
 
-  constructor(
-    private injector: Injector
-  ) {}
-
-  intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+  intercept(
+    request: HttpRequest<any>,
+    next: HttpHandler
+  ): Observable<HttpEvent<any>> {
     const _authSrv = this.injector.get(AuthService);
-    const token = _authSrv.user ? _authSrv.user.api_token : '';
+    const token = _authSrv.user ? _authSrv.user.api_token : "";
 
+    /*
     request = request.clone({
       setHeaders: {
         'Api-Token': token,
@@ -29,14 +30,13 @@ export class TokenInterceptor implements HttpInterceptor {
         'Authorization': `User ${token}`, // TODO: usar JWT
         'X-Requested-With': 'XMLHttpRequest'
       }
-    });
+    });*/
     return next.handle(request);
   }
 
   private addToken(request: HttpRequest<any>, token: string) {
     return request.clone({
-      setHeaders: { 'Authorization': `Bearer ${token}` }
+      setHeaders: { Authorization: `Bearer ${token}` },
     });
   }
-
 }

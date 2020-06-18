@@ -29,19 +29,18 @@ export class LoggingErrorService {
 
     // Server error
     if (error instanceof HttpErrorResponse) {
-      console.log("instanceof Error: ", error.error instanceof Error);
-      console.log("instanceof ErrorEvent: ", error.error instanceof ErrorEvent);
+      //console.log("instanceof Error: ", error.error instanceof Error);
+      //console.log("instanceof ErrorEvent: ", error.error instanceof ErrorEvent);
+      console.log("error.name: ", error.name);
+      console.log("error.message: ", error.message);
+      console.log("error.error: ", error.error);
+      console.log("error.status: ", error.status);
 
       if (error.error instanceof Error) return error.error;
       if (error.error instanceof ErrorEvent) return error.error.message;
       if (typeof error.error === "string") {
-        const formattedError = `${error.name} '${error.error}/${error.status}' for '${error.url}'`;
-        return new HttpError(formattedError);
+        return new HttpError(`${error.name} '${error.error.toUpperCase()}/${error.status}' for '${error.url}'`); // prettier-ignore
       }
-      /*return new Error(
-          `${error.name} '${error.error}/${error.status}' for '${error.url}'`*/
-      //); // TODO: check this!! search <unknown> httpErrorResponse
-      //return `${error.name} '${error.error}/${error.status}' for '${error.url}'`; // TODO: check this!! search <unknown> httpErrorResponse
       return error.message; // cuando se hace petición sin internet
     }
     // Client error
@@ -49,18 +48,15 @@ export class LoggingErrorService {
     else return null;
   }
 
-  logError(stackTrace) {
+  logError(error) {
     //if (environment.production) {
-    this.handleError(stackTrace);
+    this.handleError(error);
     //} else {
     //}
   }
 
   handleError(error) {
-    console.log("error enviado a sentry: ", error);
     const extractedError = this.extractError(error);
-
-    console.log("extractedError: ", extractedError);
     /*let user;
     let page;
     let version;
@@ -77,7 +73,6 @@ export class LoggingErrorService {
     });*/
     //Sentry.setRelease();
     const eventId = Sentry.captureException(extractedError);
-    // Para que el usuario explique el error
-    //Sentry.showReportDialog({ eventId });
+    Sentry.showReportDialog({ eventId }); // Para que el usuario explique el error
   }
 }

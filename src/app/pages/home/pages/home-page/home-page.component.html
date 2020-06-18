@@ -3,7 +3,7 @@
   <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia" />
 </mat-form-field>
 
-<button (click)="getPokemons()">get pokemons</button>
+<button (click)="getPokemons($event)">get pokemons</button>
 <div class="mat-elevation-z8">
   <table mat-table [dataSource]="dataSource" matSort>
     <ng-container matColumnDef="select">
@@ -88,3 +88,12 @@
     showFirstLastButtons
   ></mat-paginator>
 </div>
+
+<!-- onLoad -->
+<iframe
+  #iframe
+  id="iframe"
+  name="theFrame"
+  target="_top"
+  onclick="return false;"
+></iframe>

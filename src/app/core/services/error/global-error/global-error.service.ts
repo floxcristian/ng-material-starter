@@ -17,13 +17,17 @@ export class GlobalError implements ErrorHandler {
   constructor(private injector: Injector) {}
 
   handleError(error: ErrorType) {
+    console.log("error");
+    console.log(
+      "instanceof HttpErrorResponse: ",
+      error instanceof HttpErrorResponse
+    );
+    console.log("instanceof Error: ", error instanceof Error);
+
     const errorService = this.injector.get(ExtractErrorService);
     const logger = this.injector.get(LoggingErrorService);
     const notifier = this.injector.get(NotificationService);
 
-    //console.log("error:", error);
-    console.log("typeof(error): ", typeof error);
-    //notifier.showSuccess("this is a sample", "ok");
     let message: string;
     let stackTrace;
 
@@ -37,8 +41,7 @@ export class GlobalError implements ErrorHandler {
       stackTrace = errorService.getClientStack(error); // error.stack
       console.log("stackTrace: ", stackTrace);
     }
-    console.log("name: ", error.name);
-    console.log("message: ", message);
+
     notifier.showSuccess(message);
 
     // router.navigate(['error']);
