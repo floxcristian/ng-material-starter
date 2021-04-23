@@ -4,7 +4,7 @@
         <form [formGroup]="loginForm" novalidate (ngSubmit)="onSubmit($event)">
 
             <mat-form-field>
-                <mat-label>Correo electrónico</mat-label>
+                <mat-label>{{'EMAIL' | translate}}</mat-label>
                 <input matInput type="email" formControlName="email"
                 [class.is-danger]="emailFieldIsInvalid">
 
@@ -15,7 +15,7 @@
             </mat-form-field>
             
             <mat-form-field>
-                <mat-label>Ingresa tu contraseña</mat-label>
+                <mat-label>{{'PASSWORD' | translate}}</mat-label>
                 <input matInput [type]="hideTooltip ? 'password' : 'text'" formControlName="password" autocomplete="new-password">
 
                 <button [appTooltipPassword]="hideTooltip"
@@ -47,12 +47,10 @@
 
             <div class="submit">
                 <button mat-raised-button color="primary" [disabled]="loginForm.invalid">
-                    Ingresar
+                    {{'LOG_IN' | translate}}
                 </button>
             </div>
 
         </form>
     </div>
 </div>
-
-<div>{{'PASSWORD'| translate}}</div>

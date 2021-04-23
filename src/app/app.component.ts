@@ -10,7 +10,7 @@ import { Store, select } from "@ngrx/store";
 @Component({
   selector: "app-root",
   template:
-    '<router-outlet></router-outlet><select #langSelect (change)="changeLang(langSelect.value)"><option *ngFor="let lang of langs" [value]="lang">{{lang}}</option></select> <div>{{"EMAIL" | translate}}</div>',
+    '<router-outlet></router-outlet><select #langSelect (change)="changeLang(langSelect.value)"><option *ngFor="let lang of langs" [value]="lang">{{lang}}</option></select>',
   styleUrls: ["./app.component.scss"],
 })
 export class AppComponent implements OnInit {

@@ -1,0 +1,5 @@
+<p>products-page works!</p>
+
+<div class="product-grid">
+    <app-product-card *ngFor="let product of products" (productClicked)="clickProduct($event)" [product]="product"></app-product-card>
+</div>
