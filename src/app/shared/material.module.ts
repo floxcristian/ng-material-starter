@@ -19,6 +19,7 @@ import { MatRippleModule } from "@angular/material/core";
 import { MatTooltipModule } from "@angular/material/tooltip";
 import { MatSelectModule } from "@angular/material/select";
 import { MatSnackBarModule } from "@angular/material/snack-bar";
+import { MatBadgeModule } from "@angular/material/badge";
 
 const MATERIAL_MODULES = [
   MatCardModule,
@@ -40,6 +41,7 @@ const MATERIAL_MODULES = [
   MatTooltipModule,
   MatSelectModule,
   MatSnackBarModule,
+  MatBadgeModule,
 ];
 
 @NgModule({

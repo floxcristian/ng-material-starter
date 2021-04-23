@@ -1,42 +1,33 @@
 // Angular
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgModule } from "@angular/core";
+import { CommonModule } from "@angular/common";
+import { RouterModule } from "@angular/router";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 // UI module
-import { MaterialModule } from './material.module';
+import { MaterialModule } from "./material.module";
 // Translate
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslateModule } from "@ngx-translate/core";
+// Angular FlexLayout
+import { FlexLayoutModule } from "@angular/flex-layout";
 // Layout
-import { FooterComponent } from './layout/footer/footer.component';
-import { HeaderComponent } from './layout/header/header.component';
-import { MainLayoutComponent } from './layout/main-layout/main-layout.component';
+import { FooterComponent } from "./layout/footer/footer.component";
+import { HeaderComponent } from "./layout/header/header.component";
+import { MainLayoutComponent } from "./layout/main-layout/main-layout.component";
 
 const MODULES = [
   CommonModule,
   FormsModule,
   ReactiveFormsModule,
   MaterialModule,
-  TranslateModule
+  TranslateModule,
+  FlexLayoutModule,
 ];
 
-const COMPONENTS = [
-  HeaderComponent,
-  FooterComponent,
-  MainLayoutComponent
-];
+const COMPONENTS = [HeaderComponent, FooterComponent, MainLayoutComponent];
 
 @NgModule({
-  declarations: [
-    ...COMPONENTS,
-  ],
-  imports: [
-    RouterModule,
-    ...MODULES
-  ],
-  exports: [
-    MODULES,
-    COMPONENTS
-  ]
+  declarations: [...COMPONENTS],
+  imports: [RouterModule, ...MODULES],
+  exports: [MODULES, COMPONENTS],
 })
-export class SharedModule { }
+export class SharedModule {}

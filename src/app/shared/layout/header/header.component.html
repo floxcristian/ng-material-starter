@@ -1,17 +1,27 @@
 <mat-toolbar color="primary">
-    <mat-toolbar-row>
+  <mat-toolbar-row>
+    <div fxLayout="row" fxLayoutAlign="space-between center" class="header-row">
+      <nav>
+        <a mat-button routerLink="/products" routerLinkActive="active">
+          Productos
+        </a>
+      </nav>
+      <a mat-button-raised matBadge="4" matBadgeColor="warn">
+        <mat-icon>shopping_cart</mat-icon>
+        Carrito
+      </a>
+    </div>
+  </mat-toolbar-row>
+</mat-toolbar>
 
-        <span routerLink="">Material Starter</span>
+<!--<span routerLink="">Material Starter</span>
         <button mat-button color="warn" routerLink="/account/login">login</button>
-        <button mat-button color="warn" routerLink="/account/signup">signup</button>
-        <!-- <span *ngIf="language$ | async as language"> -->
-        <span>
+        <button mat-button color="warn" routerLink="/account/signup">signup</button> -->
+<!-- <span *ngIf="language$ | async as language"> -->
+<!--<span>
             <mat-select (selectionChange)="onLanguageSelect($event)">
                 <mat-option *ngFor="let l of languages" [value]="l">
                     {{ l.toUpperCase() }}
                 </mat-option>
             </mat-select>
-        </span>
-    </mat-toolbar-row>
-
-</mat-toolbar>
+        </span> -->
