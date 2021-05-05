@@ -8,9 +8,10 @@ import { HomePageComponent } from "./pages/home-page/home-page.component";
 // Modules
 import { SharedModule } from "@shared/shared.module";
 import { EditProductPageComponent } from "./pages/edit-product-page/edit-product-page.component";
+import { BannerComponent } from './components/banner/banner.component';
 
 @NgModule({
-  declarations: [HomePageComponent, EditProductPageComponent],
+  declarations: [HomePageComponent, EditProductPageComponent, BannerComponent],
   imports: [CommonModule, HomeRoutingModule, SharedModule],
   entryComponents: [EditProductPageComponent],
 })
