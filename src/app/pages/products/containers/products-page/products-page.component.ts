@@ -10,7 +10,7 @@ export class ProductsPageComponent implements OnInit {
   products: IProduct[] = [
     {
       id: "1",
-      image: "assets/images/camiseta.png",
+      image: "assets/images/food/fruit1.png",
       title: "Camiseta",
       price: 80000,
       description: "bla bla bla bla bla",
