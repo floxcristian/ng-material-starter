@@ -3,7 +3,9 @@
     <mat-card-title>
       {{ product.title | uppercase }}
     </mat-card-title>
-    <mat-card-subtitle>{{ product.price }}</mat-card-subtitle>
+    <mat-card-subtitle>
+      {{ product.price }} - {{ product.unit | uppercase }}
+    </mat-card-subtitle>
   </mat-card-header>
   <div class="crop-image">
     <img [src]="product.image" alt="" />
@@ -12,7 +14,13 @@
     <p>{{ product.description | slice: 0:10 }}</p>
   </mat-card-content>
   <mat-card-actions>
-    <button mat-raised-button (click)="addToCart()">Agregar al carrito</button>
+    <button
+      mat-raised-button
+      style="background-color: #00d372; color: white"
+      (click)="addToCart()"
+    >
+      AGREGAR AL CARRITO
+    </button>
     <a mat-raised-button [routerLink]="['/products', product.id]">
       Ver detalle
     </a>

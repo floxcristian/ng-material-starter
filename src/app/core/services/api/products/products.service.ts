@@ -12,6 +12,7 @@ export class ProductsService {
       title: "Repollo",
       price: 80000,
       description: "bla bla bla bla bla",
+      unit: "KG",
     },
     {
       id: "2",
@@ -19,6 +20,7 @@ export class ProductsService {
       title: "Brócoli",
       price: 80000,
       description: "bla bla bla bla bla",
+      unit: "KG",
     },
     {
       id: "3",
@@ -26,6 +28,7 @@ export class ProductsService {
       title: "Zanahoria",
       price: 80000,
       description: "bla bla bla bla bla",
+      unit: "KG",
     },
     {
       id: "4",
@@ -33,6 +36,7 @@ export class ProductsService {
       title: "Remolacha",
       price: 80000,
       description: "bla bla bla bla bla",
+      unit: "KG",
     },
     {
       id: "5",
@@ -40,6 +44,7 @@ export class ProductsService {
       title: "Rábano",
       price: 80000,
       description: "bla bla bla bla bla",
+      unit: "KG",
     },
     {
       id: "6",
@@ -47,6 +52,7 @@ export class ProductsService {
       title: "Uva",
       price: 80000,
       description: "bla bla bla bla bla",
+      unit: "KG",
     },
     {
       id: "7",
@@ -54,6 +60,7 @@ export class ProductsService {
       title: "Plátano",
       price: 80000,
       description: "bla bla bla bla bla",
+      unit: "KG",
     },
     {
       id: "8",
@@ -61,6 +68,7 @@ export class ProductsService {
       title: "Manzana",
       price: 80000,
       description: "bla bla bla bla bla",
+      unit: "KG",
     },
   ];
 
