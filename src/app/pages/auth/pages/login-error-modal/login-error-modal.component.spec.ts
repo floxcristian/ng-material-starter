@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { LoginErrorModalComponent } from './login-error-modal.component';
 
@@ -6,7 +6,7 @@ describe('LoginErrorModalComponent', () => {
   let component: LoginErrorModalComponent;
   let fixture: ComponentFixture<LoginErrorModalComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ LoginErrorModalComponent ]
     })
