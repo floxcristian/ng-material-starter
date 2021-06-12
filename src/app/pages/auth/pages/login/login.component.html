@@ -1,35 +1,48 @@
 <div class="row">
-    <div class="col-xs-12">
-      
-        <form [formGroup]="loginForm" novalidate (ngSubmit)="onSubmit($event)">
+  <div class="col-xs-12">
+    <form [formGroup]="loginForm" novalidate (ngSubmit)="onSubmit($event)">
+      <mat-form-field>
+        <mat-label>{{ "EMAIL" | translate }}</mat-label>
+        <input
+          matInput
+          type="email"
+          formControlName="email"
+          [class.is-danger]="emailFieldIsInvalid"
+        />
 
-            <mat-form-field>
-                <mat-label>{{'EMAIL' | translate}}</mat-label>
-                <input matInput type="email" formControlName="email"
-                [class.is-danger]="emailFieldIsInvalid">
+        <!-- <div *ngIf="emailFieldIsInvalid"> -->
+        <mat-error *ngIf="emailField.hasError('required')"
+          >Ingresa un correo electrónico.</mat-error
+        >
+        <!-- </div> -->
+        <!-- <mat-error *ngIf="email.invalid">{{getErrorMessageForemail()}}</mat-error> -->
+      </mat-form-field>
 
-                <!-- <div *ngIf="emailFieldIsInvalid"> -->
-                    <mat-error *ngIf="emailField.hasError('required')">Ingresa un correo electrónico.</mat-error>
-                <!-- </div> -->
-                <!-- <mat-error *ngIf="email.invalid">{{getErrorMessageForemail()}}</mat-error> -->
-            </mat-form-field>
-            
-            <mat-form-field>
-                <mat-label>{{'PASSWORD' | translate}}</mat-label>
-                <input matInput [type]="hideTooltip ? 'password' : 'text'" formControlName="password" autocomplete="new-password">
+      <mat-form-field>
+        <mat-label>{{ "PASSWORD" | translate }}</mat-label>
+        <input
+          matInput
+          [type]="hideTooltip ? 'password' : 'text'"
+          formControlName="password"
+          autocomplete="new-password"
+        />
 
-                <button [appTooltipPassword]="hideTooltip"
-                type="button" 
-                mat-icon-button 
-                matSuffix 
-                (click)="hideTooltip = !hideTooltip" 
-                [attr.aria-label]="'Hide password'" 
-                [attr.aria-pressed]="hideTooltip" 
-                matTooltipClass="clo">
-                    <mat-icon>{{hideTooltip ? 'visibility_off' : 'visibility'}}</mat-icon>
-                </button>
-            </mat-form-field>
-            <!-- <mat-form-field>
+        <button
+          [appTooltipPassword]="hideTooltip"
+          type="button"
+          mat-icon-button
+          matSuffix
+          (click)="hideTooltip = !hideTooltip"
+          [attr.aria-label]="'Hide password'"
+          [attr.aria-pressed]="hideTooltip"
+          matTooltipClass="clo"
+        >
+          <mat-icon>{{
+            hideTooltip ? "visibility_off" : "visibility"
+          }}</mat-icon>
+        </button>
+      </mat-form-field>
+      <!-- <mat-form-field>
                 <mat-label>Ingresa tu contraseña</mat-label>
                 <input matInput [type]="hideTooltip ? 'password' : 'text'" formControlName="password" autocomplete="new-password">
                 <button appTooltipPassword 
@@ -45,12 +58,15 @@
                 </button>
             </mat-form-field> -->
 
-            <div class="submit">
-                <button mat-raised-button color="primary" [disabled]="loginForm.invalid">
-                    {{'LOG_IN' | translate}}
-                </button>
-            </div>
-
-        </form>
-    </div>
+      <div class="submit">
+        <button
+          style="text-transform: uppercase"
+          mat-raised-button
+          color="primary"
+        >
+          {{ "LOG_IN" | translate }}
+        </button>
+      </div>
+    </form>
+  </div>
 </div>

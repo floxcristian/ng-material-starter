@@ -1,10 +1,16 @@
-.clo{
-   // background: #b71c1c;
-    margin:0;
-    padding:0;
+:host {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.clo {
+  // background: #b71c1c;
+  margin: 0;
+  padding: 0;
 }
 
-.is-danger{
-    //background: red;
-//    color: red;
+.is-danger {
+  //background: red;
+  //    color: red;
 }

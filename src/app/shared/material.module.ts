@@ -20,6 +20,7 @@ import { MatTooltipModule } from "@angular/material/tooltip";
 import { MatSelectModule } from "@angular/material/select";
 import { MatSnackBarModule } from "@angular/material/snack-bar";
 import { MatBadgeModule } from "@angular/material/badge";
+import { MatButtonToggleModule } from "@angular/material/button-toggle";
 
 const MATERIAL_MODULES = [
   MatCardModule,
@@ -42,6 +43,7 @@ const MATERIAL_MODULES = [
   MatSelectModule,
   MatSnackBarModule,
   MatBadgeModule,
+  MatButtonToggleModule,
 ];
 
 @NgModule({

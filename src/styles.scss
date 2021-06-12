@@ -1,45 +1,27 @@
-// Theming personalizado para Angular Material
-@import "~@angular/material/theming";
-// Incluiir los estilos comunes de Angular Material
-@include mat-core();
-// We include this here so that you only
-// have to load a single css file for Angular Material in your app.
-// Be sure that you only ever include this mixin once!
-
-// Define the palettes for your theme using the Material Design palettes available in palette.scss
-// (imported above). For each palette, you can optionally specify a default, lighter, and darker
-// hue. Available color palettes: https://material.io/design/color/
-$material-demo-primary: mat-palette($mat-indigo);
-$material-demo-accent: mat-palette($mat-pink, A200, A100, A400);
-
-// The warn palette is optional (defaults to red).
-$material-demo-warn: mat-palette($mat-red);
-
-// Create the theme object (a Sass map containing all of the palettes).
-$material-demo-theme: mat-light-theme(
-  $material-demo-primary,
-  $material-demo-accent,
-  $material-demo-warn
-);
-
-// Include theme styles for core and each component used in your app.
-// Alternatively, you can import and @include the theme mixins for each component
-// that you are using.
-@include angular-material-theme($material-demo-theme);
+@import "~normalize.css";
+@import "./theme/_reset.scss";
+@import "./theme/_theme.scss";
+@import "./theme/_palette.scss";
 
 /* You can add global styles to this file, and also import other style files */
 :root {
   --green: #00d372;
 }
 
+html {
+  font-size: 62.5%;
+}
 html,
 body {
   height: 100%;
+  background-color: #f9f9f9;
 }
 body {
   margin: 0;
   padding: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
+  display: flex;
+  flex-direction: column;
 }
 
 ::selection {
@@ -49,6 +31,18 @@ body {
 
 .product-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 50px 20px;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 2rem 2rem;
+}
+
+.primary-bg-900 {
+  background-color: mat-color($cz-primary, 900);
+}
+
+mat-icon + span {
+  margin-left: 1rem;
+}
+
+.mat-button-toggle-appearance-standard .mat-button-toggle-label-content {
+  line-height: 35px;
 }

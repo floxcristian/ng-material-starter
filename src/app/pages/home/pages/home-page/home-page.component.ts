@@ -7,8 +7,6 @@ import { MatSort } from "@angular/material/sort";
 import { SelectionModel } from "@angular/cdk/collections";
 import { MatDialog } from "@angular/material/dialog";
 import { EditProductPageComponent } from "../edit-product-page/edit-product-page.component";
-import { ResourcesService } from "@core/services/api/resources/resources.service";
-import { HttpResponse } from "@angular/common/http";
 
 export interface PeriodicElement {
   name: string;
@@ -60,10 +58,7 @@ export class HomePageComponent implements OnInit {
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
 
-  constructor(
-    public dialog: MatDialog,
-    private resourceSrv: ResourcesService
-  ) {}
+  constructor(public dialog: MatDialog) {}
 
   ngOnInit(): void {
     this.dataSource.paginator = this.paginator;
@@ -72,23 +67,6 @@ export class HomePageComponent implements OnInit {
 
   getPokemons(event) {
     event.preventDefault();
-
-    this.resourceSrv.getPokemons().subscribe((response: HttpResponse<any>) => {
-      console.log("response: ", response);
-      let headers = response.headers;
-      console.log("headers: ", headers);
-      console.log("maybe: ", headers.keys());
-      let keys = Object.keys(headers);
-      console.log("keys: ", keys);
-      console.log(headers["headers"]);
-      console.log(headers.getAll("headers"));
-      console.log(headers.get("headers"));
-      console.log(headers.getAll("set-cookie"));
-      console.log(headers.get("set-cookie"));
-
-      //console.log(headers.getAll("set-cookie"));
-      //console.log(headers.get("set-cookie"));
-    });
   }
 
   /**

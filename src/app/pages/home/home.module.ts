@@ -1,18 +1,18 @@
 // Angular
 import { NgModule } from "@angular/core";
-import { CommonModule } from "@angular/common";
-// Routing
+// Routing Module
 import { HomeRoutingModule } from "./home-routing.module";
-// Root component
+// Root Component
 import { HomePageComponent } from "./pages/home-page/home-page.component";
 // Modules
 import { SharedModule } from "@shared/shared.module";
+// Components
 import { EditProductPageComponent } from "./pages/edit-product-page/edit-product-page.component";
-import { BannerComponent } from './components/banner/banner.component';
+import { BannerComponent } from "./components/banner/banner.component";
 
 @NgModule({
   declarations: [HomePageComponent, EditProductPageComponent, BannerComponent],
-  imports: [CommonModule, HomeRoutingModule, SharedModule],
+  imports: [HomeRoutingModule, SharedModule],
   entryComponents: [EditProductPageComponent],
 })
 export class HomeModule {}

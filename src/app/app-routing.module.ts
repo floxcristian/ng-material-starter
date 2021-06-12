@@ -5,8 +5,15 @@ import { Routes, RouterModule, PreloadAllModules } from "@angular/router";
 import { PublicGuard } from "@core/guards/public/public.guard";
 import { AuthGuard } from "@core/guards/auth/auth.guard";
 import { MainLayoutComponent } from "@shared/layout/main-layout/main-layout.component";
+import { AuthLayoutComponent } from "@shared/layout/auth-layout/auth-layout.component";
 
 const routes: Routes = [
+  {
+    path: "account",
+    component: AuthLayoutComponent,
+    loadChildren: () =>
+      import("./pages/auth/auth.module").then((m) => m.AuthModule),
+  },
   {
     path: "",
     component: MainLayoutComponent,
@@ -14,12 +21,7 @@ const routes: Routes = [
       {
         path: "",
         loadChildren: () =>
-          import("./pages/home/home.module").then((m) => m.HomeModule),
-      },
-      {
-        path: "account",
-        loadChildren: () =>
-          import("./pages/auth/auth.module").then((m) => m.AuthModule),
+          import("./pages/home/home.module").then((m) => m.HomeModule), //
       },
       {
         path: "products",
@@ -45,9 +47,9 @@ const routes: Routes = [
 @NgModule({
   imports: [
     RouterModule.forRoot(routes, {
-    preloadingStrategy: PreloadAllModules,
-    relativeLinkResolution: 'legacy'
-}),
+      preloadingStrategy: PreloadAllModules,
+      relativeLinkResolution: "legacy",
+    }),
   ],
   exports: [RouterModule],
 })

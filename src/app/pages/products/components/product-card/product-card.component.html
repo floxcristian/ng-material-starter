@@ -1,28 +1,40 @@
-<mat-card>
+<mat-card class="product-card">
   <mat-card-header>
     <mat-card-title>
       {{ product.title | uppercase }}
     </mat-card-title>
     <mat-card-subtitle>
-      {{ product.price }} - {{ product.unit | uppercase }}
+      <!-- {{ product.price | currency: "CLP":"$" }} / -->
+      {{ product.price | clpCurrency: "CLP":"$" }} /
+      {{ product.unit | uppercase }}
     </mat-card-subtitle>
   </mat-card-header>
   <div class="crop-image">
     <img [src]="product.image" alt="" />
   </div>
-  <mat-card-content>
-    <p>{{ product.description | slice: 0:10 }}</p>
-  </mat-card-content>
   <mat-card-actions>
-    <button
-      mat-raised-button
-      style="background-color: #00d372; color: white"
-      (click)="addToCart()"
-    >
-      AGREGAR AL CARRITO
-    </button>
-    <a mat-raised-button [routerLink]="['/products', product.id]">
-      Ver detalle
-    </a>
+    <div style="display: flex; justify-content: space-between">
+      <mat-button-toggle-group
+        name="unitType"
+        aria-label="Unit Type"
+        style="line-height: 35px"
+      >
+        <mat-button-toggle value="kg">KG</mat-button-toggle>
+        <mat-button-toggle value="box">CAJA</mat-button-toggle>
+      </mat-button-toggle-group>
+    </div>
+    <div style="display: flex; justify-content: space-between">
+      <button mat-raised-button>
+        <mat-icon>favorite_border</mat-icon>
+        <!-- <mat-icon fontSet="material-icons-outlined">bookmark_add</mat-icon> -->
+      </button>
+      <button mat-raised-button color="primary" (click)="addToCart()">
+        <!-- style="background-color: #00d372; color: white" -->
+        AGREGAR AL CARRITO
+      </button>
+      <!--<a mat-raised-button [routerLink]="['/products', product.id]">
+        Ver detalle
+      </a>-->
+    </div>
   </mat-card-actions>
 </mat-card>

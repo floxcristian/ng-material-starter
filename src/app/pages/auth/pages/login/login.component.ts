@@ -2,31 +2,30 @@
 // https://material.angular.io/components/form-field/overview#prefix-amp-suffix
 
 // Angular
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { FormBuilder, Validators, FormGroup } from '@angular/forms';
-import { Router } from '@angular/router';
-import { HttpErrorResponse } from '@angular/common/http';
+import { Component, OnInit, ViewEncapsulation } from "@angular/core";
+import { FormBuilder, Validators, FormGroup } from "@angular/forms";
+import { Router } from "@angular/router";
+import { HttpErrorResponse } from "@angular/common/http";
 // Third-party
-import { LocalStorageService } from 'ngx-webstorage';
+import { LocalStorageService } from "ngx-webstorage";
 // Material
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog } from "@angular/material/dialog";
 // Services
-import { AuthService } from '@core/services/auth/auth.service';
+import { AuthService } from "@core/services/auth/auth.service";
 // Translate
-import {TranslateService} from '@ngx-translate/core';
+import { TranslateService } from "@ngx-translate/core";
 
-import { LoginErrorModalComponent } from '../login-error-modal/login-error-modal.component';
+import { LoginErrorModalComponent } from "../login-error-modal/login-error-modal.component";
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss'],
+  selector: "app-login",
+  templateUrl: "./login.component.html",
+  styleUrls: ["./login.component.scss"],
   encapsulation: ViewEncapsulation.None,
 })
 export class LoginComponent implements OnInit {
-
+  isSubmitting: boolean = false;
   hideTooltip: boolean = true;
-
   loginForm: FormGroup;
 
   constructor(
@@ -40,45 +39,49 @@ export class LoginComponent implements OnInit {
     this.initForm();
   }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   private initForm() {
     this.loginForm = this.fb.group({
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', Validators.required]
+      email: ["", [Validators.required, Validators.email]],
+      password: ["", Validators.required],
     });
   }
 
   getErrorMessageForemail() {
-    const hasError = this.emailField.hasError('required');
-    return hasError ? 'nombre de usuario es requerido' : '';
+    const hasError = this.emailField.hasError("required");
+    return hasError ? "nombre de usuario es requerido" : "";
   }
 
   getErrorMessageForPassword() {
-    const hasError = this.passwordField.hasError('required');
-    return hasError ? 'password es requerido' : '';
+    const hasError = this.passwordField.hasError("required");
+    return hasError ? "password es requerido" : "";
   }
 
-  get emailField(){
-    return this.loginForm.get('email');
+  get emailField() {
+    return this.loginForm.get("email");
   }
 
-  get passwordField(){
-    return this.loginForm.get('password');
+  get passwordField() {
+    return this.loginForm.get("password");
   }
 
-  get emailFieldIsInvalid(){
+  get emailFieldIsInvalid() {
     return this.emailField.touched && this.emailField.invalid;
   }
 
-  get passwordFieldIsInvalid(){
+  get passwordFieldIsInvalid() {
     return this.passwordField.touched && this.passwordField.invalid;
   }
 
   onSubmit(event: Event) {
     event.preventDefault();
-    this.router.navigate(['/dskjfdfk']);
+
+    if (this.loginForm.invalid) {
+      console.log("is invalid...");
+    } else {
+      this.router.navigate(["/dskjfdfk"]);
+    }
 
     /*
     const dialogRef = this.dialog.open(LoginErrorModalComponent, {
@@ -98,5 +101,4 @@ export class LoginComponent implements OnInit {
         this._authSrv.hasSession = false;
       });*/
   }
-
 }

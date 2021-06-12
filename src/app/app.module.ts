@@ -1,12 +1,14 @@
 // Angular
 import { BrowserModule } from "@angular/platform-browser";
 import { NgModule, ErrorHandler } from "@angular/core";
-// Root component
+// Root Component
 import { AppComponent } from "./app.component";
-// Modules
+// Routing Module
 import { AppRoutingModule } from "./app-routing.module";
+// Modules
 import { CoreModule } from "@core/core.module";
 import { SharedModule } from "@shared/shared.module";
+// Services
 import { GlobalError } from "@core/services/error/global-error/global-error.service";
 
 @NgModule({

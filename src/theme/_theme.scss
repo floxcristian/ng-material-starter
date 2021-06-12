@@ -1,0 +1,39 @@
+// https://github.com/franksotogithub/ipc-prueba/blob/35476952ae79a3450e016d52048f8c3472db5a1a/src/main-theme.scss
+// https://github.com/topdev309/tipoapp/blob/d2a1ce7aca99bcc8b971e015884df2d96c388a61/src/theme/theme-variables.scss
+// Dependencias para crear un theme
+@import "~@angular/material/theming";
+// Colores
+@import "./_variables.scss";
+@import "./_palette.scss";
+
+// Núcleo de material, necesario para usar funciones como 'mat-palette' y 'mat-light-theme'
+@include mat-core();
+
+$custom-primary: mat-palette($cz-primary);
+$custom-accent: mat-palette($mat-pink, A200, A100, A400);
+$custom-warn: mat-palette($cz-warn);
+
+// Crea el objeto theme que consiste en la configuración individual para el color, topografía, etc.
+$custom-light-theme: mat-light-theme(
+  (
+    color: (
+      primary: $custom-primary,
+      accent: $custom-accent,
+      warn: $custom-warn,
+    ),
+  )
+);
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include angular-material-theme($custom-light-theme);
+
+// Define a custom typography config that overrides the font-family as well as the
+// `headlines` and `body-1` levels.
+/*$custom-typography: mat-typography-config(
+  $font-family: 'Poppins, Helvetica, sans-serif',
+  $headline: mat-typography-level(20px, 24px, 700),
+  $body-1: mat-typography-level(12px, 20px, 500)
+);
+@include angular-material-typography($custom-typography);*/

@@ -1,17 +1,32 @@
-<mat-toolbar color="primary">
-  <mat-toolbar-row>
-    <div fxLayout="row" fxLayoutAlign="space-between center" class="header-row">
-      <nav>
-        <a mat-button routerLink="/products" routerLinkActive="active">
-          Productos
-        </a>
-      </nav>
-      <a mat-button-raised matBadge="4" matBadgeColor="warn">
-        <mat-icon>shopping_cart</mat-icon>
-      </a>
-    </div>
-  </mat-toolbar-row>
-</mat-toolbar>
+<header class="mat-elevation-z5">
+  <mat-toolbar color="primary">
+    <mat-toolbar-row>
+      <div
+        fxLayout="row"
+        fxLayoutAlign="space-between center"
+        class="header-row"
+      >
+        <nav>
+          <a mat-button routerLink="/products" routerLinkActive="active">
+            Productos
+          </a>
+        </nav>
+        <div>
+          <button mat-button routerLink="/account/login">
+            <mat-icon>perm_identity</mat-icon>
+          </button>
+          <button mat-button class="primary-bg-900">
+            <!-- <span class="material-icons-outlined"> shopping_bag </span> -->
+            <mat-icon fontSet="material-icons-outlined"
+              >shopping_basket</mat-icon
+            >
+            <span>1.200 CLP</span>
+          </button>
+        </div>
+      </div>
+    </mat-toolbar-row>
+  </mat-toolbar>
+</header>
 
 <!--<span routerLink="">Material Starter</span>
         <button mat-button color="warn" routerLink="/account/login">login</button>
@@ -24,3 +39,5 @@
                 </mat-option>
             </mat-select>
         </span> -->
+
+<!-- <select #langSelect (change)="changeLang(langSelect.value)"><option *ngFor="let lang of langs" [value]="lang">{{lang}}</option></select>  -->
